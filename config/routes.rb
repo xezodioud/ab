@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :collections
+
   resources :love_ties
 
   resources :love_threads
