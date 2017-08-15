@@ -1,0 +1,29 @@
+<h1>Listing love_threads</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Collection</th>
+      <th>Title</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @love_threads.each do |love_thread| %>
+      <tr>
+        <td><%= love_thread.collection %></td>
+        <td><%= love_thread.title %></td>
+        <td><%= love_thread.price %></td>
+        <td><%= link_to 'Show', love_thread %></td>
+        <td><%= link_to 'Edit', edit_love_thread_path(love_thread) %></td>
+        <td><%= link_to 'Destroy', love_thread, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Love thread', new_love_thread_path %>

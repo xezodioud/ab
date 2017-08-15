@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Collection:</strong>
+  <%= @love_thread.collection %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @love_thread.title %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @love_thread.price %>
+</p>
+
+<%= link_to 'Edit', edit_love_thread_path(@love_thread) %> |
+<%= link_to 'Back', love_threads_path %>
