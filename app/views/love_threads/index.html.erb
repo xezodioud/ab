@@ -1,29 +1,38 @@
-<h1>Listing love_threads</h1>
-
-<table>
+<%- model_class = LoveThreads -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => LoveThreads %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Collection</th>
-      <th>Title</th>
-      <th>Price</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @love_threads.each do |love_thread| %>
+    <% @love_threads.each do |love_threads| %>
       <tr>
-        <td><%= love_thread.collection %></td>
-        <td><%= love_thread.title %></td>
-        <td><%= love_thread.price %></td>
-        <td><%= link_to 'Show', love_thread %></td>
-        <td><%= link_to 'Edit', edit_love_thread_path(love_thread) %></td>
-        <td><%= link_to 'Destroy', love_thread, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= love_threads.id %></td>
+        <td><%= love_threads.title %></td>
+        <td><%= love_threads.price %></td>
+        <td><%=l love_threads.created_at, format: :long %></td>
+        <td>
+          <%= link_to love_threads_path(love_threads), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to love_threads_path(love_threads), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Love thread', new_love_thread_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_love_threads_path,
+            :class => 'btn btn-primary' %>
