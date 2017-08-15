@@ -1,0 +1,29 @@
+<h1>Listing love_ties</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Collection</th>
+      <th>Title</th>
+      <th>Price</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @love_ties.each do |love_ty| %>
+      <tr>
+        <td><%= love_ty.collection %></td>
+        <td><%= love_ty.title %></td>
+        <td><%= love_ty.price %></td>
+        <td><%= link_to 'Show', love_ty %></td>
+        <td><%= link_to 'Edit', edit_love_ty_path(love_ty) %></td>
+        <td><%= link_to 'Destroy', love_ty, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Love ty', new_love_ty_path %>
