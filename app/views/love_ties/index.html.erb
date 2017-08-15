@@ -1,29 +1,38 @@
-<h1>Listing love_ties</h1>
-
-<table>
+<%- model_class = LoveTies -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => LoveTies %></h1>
+</div>
+<table class="table table-striped">
   <thead>
     <tr>
-      <th>Collection</th>
-      <th>Title</th>
-      <th>Price</th>
-      <th colspan="3"></th>
+      <th>ID</th>
+      <th><%= model_class.human_attribute_name(:title) %></th>
+      <th><%= model_class.human_attribute_name(:price) %></th>
+      <th><%= model_class.human_attribute_name(:created_at) %></th>
+      <th><%=t '.actions', :default => t("helpers.actions") %></th>
     </tr>
   </thead>
-
   <tbody>
-    <% @love_ties.each do |love_ty| %>
+    <% @love_ties.each do |love_ties| %>
       <tr>
-        <td><%= love_ty.collection %></td>
-        <td><%= love_ty.title %></td>
-        <td><%= love_ty.price %></td>
-        <td><%= link_to 'Show', love_ty %></td>
-        <td><%= link_to 'Edit', edit_love_ty_path(love_ty) %></td>
-        <td><%= link_to 'Destroy', love_ty, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= love_ties.id %></td>
+        <td><%= love_ties.title %></td>
+        <td><%= love_ties.price %></td>
+        <td><%=l love_ties.created_at, format: :long %></td>
+        <td>
+          <%= link_to love_ties_path(love_ties), :class => 'btn btn-xs', :title => "#{ t('.show', :default => t('helpers.links.show')) }" do %>
+            <%= glyph 'info-sign' %>
+            <%= glyph 'pencil' %>
+          <%- end -%>
+          <%= link_to love_ties_path(love_ties), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs', :title => "#{ t('.destroy', :default => t('helpers.links.destroy')) }" do %>
+            <%= glyph 'remove' %>
+          <%- end -%>
+        </td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
-<br>
-
-<%= link_to 'New Love ty', new_love_ty_path %>
+<%= link_to t('.new', :default => t("helpers.links.new")),
+            new_love_ties_path,
+            :class => 'btn btn-primary' %>

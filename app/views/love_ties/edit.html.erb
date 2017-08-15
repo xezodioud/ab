@@ -1,6 +1,5 @@
-<h1>Editing love_ty</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @love_ty %> |
-<%= link_to 'Back', love_ties_path %>
+<%- model_class = LoveTies -%>
+<div class="page-header">
+  <h1><%=t '.title', :default => [:'helpers.titles.edit', 'Edit %{model}'], :model => LoveTies %></h1>
+</div>
+<%= render :partial => 'form' %>
